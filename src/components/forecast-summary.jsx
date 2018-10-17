@@ -4,7 +4,7 @@ const ForecastSummary = (props) => {
   return (
     <div className="forecast-summary">
       <div className="forecast-summary__date">
-        <span>{props.forecast.date}</span>
+        {props.forecast.date}
       </div>
     </div>
   );
