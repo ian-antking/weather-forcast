@@ -7,7 +7,7 @@ let wrapper;
 
 beforeEach(() => {
   forecast = {
-    date: 'mockDate',
+    date: 1539983533577,
     temperature: {
       max: 'mockTemp',
     },
@@ -27,7 +27,7 @@ beforeEach(() => {
 
 it('renders the date', () => {
   const date = wrapper.find('.forecast-summary__date').text();
-  expect(date).toEqual('mockDate');
+  expect(date).toEqual('Fri 19th Oct');
 });
 
 it('renders the temperature', () => {

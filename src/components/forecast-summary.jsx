@@ -1,11 +1,14 @@
 import React from 'react';
 import WeatherIcon from 'react-icons-weather';
+import moment from 'moment';
 
 const ForecastSummary = (forecast) => {
   return (
     <div className="forecast-summary">
       <div className="forecast-summary__date">
-        <span>{forecast.date}</span>
+        <span>{
+            moment(forecast.date).format('ddd Do MMM')
+          }</span>
       </div>
       <div className="forecast-summary__temperature">
         <span>{forecast.temperature}</span>
