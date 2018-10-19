@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "keywords": [
     "react"
@@ -24,7 +24,8 @@
     "prop-types": "^15.6.1",
     "raf": "^3.4.0",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-icons-weather": "^1.0.5"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",

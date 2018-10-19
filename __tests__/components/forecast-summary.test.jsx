@@ -41,6 +41,6 @@ it('renders the description', () => {
 });
 
 it('renders the icon', () => {
-  const icon = wrapper.find('.forecast-summary__icon').text();
-  expect(icon).toEqual('mockIcon');
+  const icon = wrapper.find('WeatherIcon');
+  expect(icon.props().iconId).toEqual('mockIcon');
 });
