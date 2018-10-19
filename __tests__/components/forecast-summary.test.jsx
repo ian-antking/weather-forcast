@@ -18,21 +18,21 @@ beforeEach(() => {
 });
 
 it('renders the date', () => {
-  const date = wrapper.find('div.forecast-summary__date').text();
+  const date = wrapper.find('.forecast-summary__date').text();
   expect(date).toEqual('mockDate');
 });
 
 it('renders the temperature', () => {
-  const temperature = wrapper.find('div.forecast-summary__temperature').text();
-  expect(temperature).toEqual('mockTemperature');
+  const temperature = wrapper.find('.forecast-summary__temperature').text();
+  expect(temperature).toEqual('mockTemp');
 });
 
 it('renders the description', () => {
-  const description = wrapper.find('div.forecast-summary__description').text();
-  expect(desctiption).toEqual('mockDescription');
+  const describe = wrapper.find('.forecast-summary__description').text();
+  expect(describe).toEqual('mockDescripton');
 });
 
 it('renders the icon', () => {
-  const icon = wrapper.find('div.forecast-summary__icon').text();
+  const icon = wrapper.find('.forecast-summary__icon').text();
   expect(icon).toEqual('mockIcon');
 });
