@@ -23,6 +23,16 @@ it('renders the date', () => {
 });
 
 it('renders the temperature', () => {
-  const temperature = wrapper.find('div.forecaset-summary__temperature').text();
+  const temperature = wrapper.find('div.forecast-summary__temperature').text();
   expect(temperature).toEqual('mockTemperature');
+});
+
+it('renders the description', () => {
+  const description = wrapper.find('div.forecast-summary__description').text();
+  expect(desctiption).toEqual('mockDescription');
+});
+
+it('renders the icon', () => {
+  const icon = wrapper.find('div.forecast-summary__icon').text();
+  expect(icon).toEqual('mockIcon');
 });
