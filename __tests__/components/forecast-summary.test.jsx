@@ -8,12 +8,20 @@ let wrapper;
 beforeEach(() => {
   forecast = {
     date: 'mockDate',
-    temperature: 'mockTemp',
+    temperature: {
+      max: 'mockTemp',
+    },
     description: 'mockDescripton',
     icon: 'mockIcon',
   };
   wrapper = Enzyme.shallow((
-    <ForecastSummary forecast={forecast} />
+    <ForecastSummary
+      key={forecast.date}
+      date={forecast.date}
+      description={forecast.description}
+      icon={forecast.icon}
+      temperature={forecast.temperature.max}
+    />
   ));
 });
 

@@ -1,19 +1,19 @@
 import React from 'react';
 
-const ForecastSummary = (props) => {
+const ForecastSummary = (forecast) => {
   return (
     <div className="forecast-summary">
       <div className="forecast-summary__date">
-        <span>{props.forecast.date}</span>
+        <span>{forecast.date}</span>
       </div>
       <div className="forecast-summary__temperature">
-        <span>{props.forecast.temperature}</span>
+        <span>{forecast.temperature}</span>
       </div>
       <div className="forecast-summary__description">
-        <span>{props.forecast.description}</span>
+        <span>{forecast.description}</span>
       </div>
       <div className="forecast-summary__icon">
-        <span>{props.forecast.icon}</span>
+        <span>{forecast.icon}</span>
       </div>
     </div>
   );

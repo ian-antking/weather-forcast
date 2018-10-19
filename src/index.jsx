@@ -2,12 +2,16 @@ import 'raf/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
-import { location } from './data/forecast.json';
+import { location, forecasts } from './data/forecast.json';
 import LocationDetails from './components/location-details';
+import ForecastSummaries from './components/forecast-summaries';
 
 const App = (props) => {
   return (
-    <LocationDetails location={props.location} />
+    <div>
+      <LocationDetails location={props.location} />
+      <ForecastSummaries forecasts={props.forecasts} />
+    </div>
   );
 };
 
@@ -16,6 +20,7 @@ App.propTypes = {
     city: PropTypes.string,
     country: PropTypes.string,
   }).isRequired,
+  forecasts: PropTypes.array.isRequired,
 };
 
-render(<App location={location} />, document.getElementById('root'));
+render(<App location={location} forecasts={forecasts}/>, document.getElementById('root'));
