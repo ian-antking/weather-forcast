@@ -6,9 +6,7 @@ const ForecastDetails = (props) => {
   return (
     <div className="forecast-details">
       <div className="forecast-details__date">
-        <span><b>{
-          moment(props.forecasts.date).format('ddd Do MMM')
-        }</b>
+        <span><b>{moment(props.forecasts.date).format('ddd Do MMM')}</b>
         </span>
       </div>
       <div className="forecast-summary__temperature-min">
