@@ -8,7 +8,8 @@ const ForecastSummary = (forecast) => {
       <div className="forecast-summary__date">
         <span>{
             moment(forecast.date).format('ddd Do MMM')
-          }</span>
+          }
+        </span>
       </div>
       <div className="forecast-summary__temperature">
         <span>{forecast.temperature}</span>
