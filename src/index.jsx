@@ -9,6 +9,7 @@ import ForecastDetails from './components/forecast-details';
 
 import '../src/styles/app.scss';
 import '../src/styles/forecast-summaries.scss';
+import '../src/styles/forecast-details.scss';
 
 const App = (props) => {
   return (

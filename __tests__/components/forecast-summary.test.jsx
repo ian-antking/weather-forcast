@@ -32,7 +32,7 @@ it('renders the date', () => {
 
 it('renders the temperature', () => {
   const temperature = wrapper.find('.forecast-summary__temperature').text();
-  expect(temperature).toEqual('mockTemp');
+  expect(temperature).toEqual('mockTemp' + '℃');
 });
 
 it('renders the description', () => {

@@ -12,7 +12,7 @@ const ForecastSummary = (forecast) => {
         </span>
       </div>
       <div className="forecast-summary__temperature">
-        <span>{forecast.temperature}</span>
+        <span>{forecast.temperature}&#8451;</span>
       </div>
       <div className="forecast-summary__icon">
         <WeatherIcon
