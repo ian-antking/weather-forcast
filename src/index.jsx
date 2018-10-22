@@ -11,15 +11,27 @@ import '../src/styles/app.scss';
 import '../src/styles/forecast-summaries.scss';
 import '../src/styles/forecast-details.scss';
 
-const App = (props) => {
-  return (
-    <div className="forecast">
-      <LocationDetails location={props.location} />
-      <ForecastSummaries forecasts={props.forecasts} />
-      <ForecastDetails forecasts={props.forecasts[0]} />
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedDate: this.props.forecasts[0].date,
+    };
+  }
+
+  render() {
+    const selectedDate = this.state.selectedDate;
+    const selectedForecast = this.props.forecasts.find(forecast => forecast.date === selectedDate);
+    return (
+      <div className="forecast">
+        <LocationDetails location={this.props.location} />
+        <ForecastSummaries forecasts={this.props.forecasts} />
+        <ForecastDetails forecasts={selectedForecast} />
+      </div>
+    );
+  }
+}
 
 App.propTypes = {
   location: PropTypes.shape({

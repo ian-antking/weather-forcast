@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 
 const ForecastDetails = (props) => {
-  console.log(props);
   return (
     <div className="forecast-details">
       <div className="forecast-details__date">
