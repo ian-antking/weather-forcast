@@ -26,10 +26,17 @@ class App extends React.Component {
     return (
       <div className="forecast">
         <LocationDetails location={this.props.location} />
-        <ForecastSummaries forecasts={this.props.forecasts} />
+        <ForecastSummaries
+          forecasts={this.props.forecasts}
+          onForecastSelect={this.handleForecastSelect.bind(this)} 
+        />
         <ForecastDetails forecasts={selectedForecast} />
       </div>
     );
+  }
+
+  handleForecastSelect(date) {
+    this.setState({ selectedDate: date });
   }
 }
 
@@ -39,6 +46,7 @@ App.propTypes = {
     country: PropTypes.string,
   }).isRequired,
   forecasts: PropTypes.array.isRequired,
+  onForecastSelect: PropTypes.func.isRequired,
 };
 
 render(<App location={location} forecasts={forecasts} />, document.getElementById('root'));

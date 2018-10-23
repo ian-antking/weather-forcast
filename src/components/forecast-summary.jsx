@@ -23,6 +23,7 @@ const ForecastSummary = (forecast) => {
       <div className="forecast-summary__description">
         <span>{forecast.description}</span>
       </div>
+      <button onClick={() => forecast.onForecastSelect(forecast.date)}>More Details</button>
     </div>
   );
 };
