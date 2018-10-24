@@ -5,9 +5,11 @@ import { render } from 'react-dom';
 import LocationDetails from './components/location-details';
 import ForecastSummaries from './components/forecast-summaries';
 import ForecastDetails from './components/forecast-details';
+import SearchForm from './components/search-form';
 import '../src/styles/app.scss';
 import '../src/styles/forecast-summaries.scss';
 import '../src/styles/forecast-details.scss';
+import '../src/styles/search-form.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,25 +37,26 @@ class App extends React.Component {
       });
   }
 
+  handleForecastSelect = (date) => {
+    this.setState({ selectedDate: date });
+  };
+
   render() {
     const selectedDate = this.state.selectedDate;
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === selectedDate);
     return (
       <div className="forecast">
         <LocationDetails location={this.state.location} />
+        <SearchForm />
         <ForecastSummaries
           forecasts={this.state.forecasts}
-          onForecastSelect={this.handleForecastSelect.bind(this)}
+          onForecastSelect={this.handleForecastSelect}
         />
         {
           selectedForecast && <ForecastDetails forecasts={selectedForecast} />
         }
       </div>
     );
-  }
-
-  handleForecastSelect(date) {
-    this.setState({ selectedDate: date });
   }
 }
 
