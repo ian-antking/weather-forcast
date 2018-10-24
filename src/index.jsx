@@ -57,7 +57,7 @@ class App extends React.Component {
         />
         <ForecastSummaries
           forecasts={this.state.forecasts}
-          onForecastSelect={this.getForecast}
+          onForecastSelect={this.handleForecastSelect}
         />
         {
           selectedForecast && <ForecastDetails forecasts={selectedForecast} />
