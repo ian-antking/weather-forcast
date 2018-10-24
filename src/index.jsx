@@ -41,13 +41,19 @@ class App extends React.Component {
     this.setState({ selectedDate: date });
   };
 
+  handleCitySearch = () => {
+    console.log('The System Works!');
+  };
+
   render() {
     const selectedDate = this.state.selectedDate;
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === selectedDate);
     return (
       <div className="forecast">
         <LocationDetails location={this.state.location} />
-        <SearchForm />
+        <SearchForm
+          onSearch={this.handleCitySearch}
+        />
         <ForecastSummaries
           forecasts={this.state.forecasts}
           onForecastSelect={this.handleForecastSelect}
