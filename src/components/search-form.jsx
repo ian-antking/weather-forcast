@@ -20,7 +20,7 @@ class SearchForm extends React.Component {
         <span>
           <button
             onClick={
-              () => this.props.onSearch()
+              () => this.props.onSearch(this.state.searchText)
           }
           >
             Search

@@ -25,7 +25,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://mcr-codes-weather.herokuapp.com/forecast?city=Manchester')
+    this.getForecast('Manchester');
+  }
+
+  handleForecastSelect = (date) => {
+    this.setState({ selectedDate: date });
+  };
+
+  getForecast = (city) => {
+    axios.get(`https://mcr-codes-weather.herokuapp.com/forecast?city=${city}`)
       .then((response) => {
         this.setState({
           location: {
@@ -37,14 +45,6 @@ class App extends React.Component {
       });
   }
 
-  handleForecastSelect = (date) => {
-    this.setState({ selectedDate: date });
-  };
-
-  handleCitySearch = () => {
-    console.log('The System Works!');
-  };
-
   render() {
     const selectedDate = this.state.selectedDate;
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === selectedDate);
@@ -52,11 +52,12 @@ class App extends React.Component {
       <div className="forecast">
         <LocationDetails location={this.state.location} />
         <SearchForm
-          onSearch={this.handleCitySearch}
+
+          onSearch={this.getForecast}
         />
         <ForecastSummaries
           forecasts={this.state.forecasts}
-          onForecastSelect={this.handleForecastSelect}
+          onForecastSelect={this.getForecast}
         />
         {
           selectedForecast && <ForecastDetails forecasts={selectedForecast} />
