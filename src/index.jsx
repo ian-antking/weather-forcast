@@ -1,12 +1,10 @@
 import 'raf/polyfill';
 import React from 'react';
+import axios from 'axios';
 import { render } from 'react-dom';
-import PropTypes from 'prop-types';
-import { location, forecasts } from './data/forecast.json';
 import LocationDetails from './components/location-details';
 import ForecastSummaries from './components/forecast-summaries';
 import ForecastDetails from './components/forecast-details';
-
 import '../src/styles/app.scss';
 import '../src/styles/forecast-summaries.scss';
 import '../src/styles/forecast-details.scss';
@@ -14,23 +12,42 @@ import '../src/styles/forecast-details.scss';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      selectedDate: this.props.forecasts[0].date,
+      selectedDate: 0,
+      forecasts: [],
+      location: {
+        city: '',
+        country: '',
+      },
     };
+  }
+
+  componentDidMount() {
+    axios.get('https://mcr-codes-weather.herokuapp.com/forecast?city=Manchester')
+      .then((response) => {
+        this.setState({
+          location: {
+            city: response.data.location.city,
+            country: response.data.location.country,
+          },
+          forecasts: response.data.forecasts,
+        });
+      });
   }
 
   render() {
     const selectedDate = this.state.selectedDate;
-    const selectedForecast = this.props.forecasts.find(forecast => forecast.date === selectedDate);
+    const selectedForecast = this.state.forecasts.find(forecast => forecast.date === selectedDate);
     return (
       <div className="forecast">
-        <LocationDetails location={this.props.location} />
+        <LocationDetails location={this.state.location} />
         <ForecastSummaries
-          forecasts={this.props.forecasts}
-          onForecastSelect={this.handleForecastSelect.bind(this)} 
+          forecasts={this.state.forecasts}
+          onForecastSelect={this.handleForecastSelect.bind(this)}
         />
-        <ForecastDetails forecasts={selectedForecast} />
+        {
+          selectedForecast && <ForecastDetails forecasts={selectedForecast} />
+        }
       </div>
     );
   }
@@ -40,13 +57,4 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  location: PropTypes.shape({
-    city: PropTypes.string,
-    country: PropTypes.string,
-  }).isRequired,
-  forecasts: PropTypes.array.isRequired,
-  onForecastSelect: PropTypes.func.isRequired,
-};
-
-render(<App location={location} forecasts={forecasts} />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
