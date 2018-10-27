@@ -6,15 +6,18 @@ import LocationDetails from './components/location-details';
 import ForecastSummaries from './components/forecast-summaries';
 import ForecastDetails from './components/forecast-details';
 import SearchForm from './components/search-form';
+import StatusMessage from './components/status-message';
 import '../src/styles/app.scss';
 import '../src/styles/forecast-summaries.scss';
 import '../src/styles/forecast-details.scss';
-import '../src/styles/search-form.scss';
+import '../src/styles/search-bar.scss';
+import '../src/styles/status-message.scss';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      status: '',
       selectedDate: 0,
       forecasts: [],
       location: {
@@ -32,6 +35,12 @@ class App extends React.Component {
     this.setState({ selectedDate: date });
   };
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log('The System Works!');
+    }
+  };
+
   getForecast = (city) => {
     axios.get(`https://mcr-codes-weather.herokuapp.com/forecast?city=${city}`)
       .then((response) => {
@@ -41,9 +50,21 @@ class App extends React.Component {
             country: response.data.location.country,
           },
           forecasts: response.data.forecasts,
+          status: '',
         });
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.setState({
+            status: `Error: ${city} not found!`,
+          });
+        } else if (error.request) {
+          this.setState({
+            status: 'Could not fetch data; Please check your connection and try again.',
+          });
+        }
       });
-  }
+  };
 
   render() {
     const selectedDate = this.state.selectedDate;
@@ -51,10 +72,12 @@ class App extends React.Component {
     return (
       <div className="forecast">
         <LocationDetails location={this.state.location} />
-        <SearchForm
-
-          onSearch={this.getForecast}
-        />
+        <div className="search-bar">
+          <SearchForm
+            onSearch={this.getForecast}
+          />
+          <StatusMessage message={this.state.status} />
+        </div>
         <ForecastSummaries
           forecasts={this.state.forecasts}
           onForecastSelect={this.handleForecastSelect}

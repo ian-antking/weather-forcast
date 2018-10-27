@@ -14,6 +14,12 @@ class SearchForm extends React.Component {
     });
   };
 
+  _handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.props.onSearch(this.state.searchText);
+    }
+  };
+
   render() {
     return (
       <div className="search-form">
@@ -28,7 +34,7 @@ class SearchForm extends React.Component {
           <input
             type="text"
             onChange={this.handleInputChange}
-            value={this.state.searchText}
+            onKeyPress={this._handleKeyPress}
           />
         </span>
       </div>
