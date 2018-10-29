@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "jest --verbose"
-  },
+    "test": "jest --verbose",
+    "build": "webpack"
+    },
   "keywords": [
     "react"
   ],
