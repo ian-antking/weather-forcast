@@ -35,12 +35,6 @@ class App extends React.Component {
     this.setState({ selectedDate: date });
   };
 
-  handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      console.log('The System Works!');
-    }
-  };
-
   getForecast = (city) => {
     axios.get(`https://mcr-codes-weather.herokuapp.com/forecast?city=${city}`)
       .then((response) => {
