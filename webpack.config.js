@@ -5,7 +5,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   target: 'web',
-  mode: 'development',
+  mode: process.env.BUILD_ENV === 'production' ? 'production' : 'development',
   entry: path.join(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public'),

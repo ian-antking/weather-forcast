@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "jest --verbose",
-    "build": "webpack"
+    "build": "BUILD_ENV=production webpack"
   },
   "keywords": [
     "react"
